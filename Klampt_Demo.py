@@ -24,7 +24,7 @@ def make_shelf(world,width,depth,height,wall_thickness=0.005):
     left.transform([wall_thickness,0,0,0,depth,0,0,0,height],[-width*0.5,-depth*0.5,0])
     right.loadFile(KLAMPT_Demo+"/data/objects/cube.off")
     right.transform([wall_thickness,0,0,0,depth,0,0,0,height],[width*0.5,-depth*0.5,0])
-    back.loadFile(KLAMPT_EXAMPLES+"/data/objects/cube.off")
+    back.loadFile(KLAMPT_Demo+"/data/objects/cube.off")
     back.scale(width,wall_thickness,height)
     back.translate([-width*0.5,depth*0.5,0])
     bottom = primitives.box(width,depth,wall_thickness,center=[0,0,0])
