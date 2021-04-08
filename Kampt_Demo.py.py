@@ -11,7 +11,7 @@ from klampt.math import vectorops,so3,se3
 from klampt.model.create import primitives
 
 #you will need to change this to the absolute or relative path to Klampt-examples
-KLAMPT_EXAMPLES = 'C:/Users/frank/Desktop/Python/Klampt/Klampt-examples-master'
+KLAMPT_EXAMPLES = ''
 shelf_dims = (0.4,0.4,0.3)
 shelf_offset_x=0.8
 shelf_offset_y = 0.1
@@ -50,7 +50,7 @@ def make_shelf(world,width,depth,height,wall_thickness=0.005):
     return shelf
 
 w = WorldModel()
-if not w.readFile("C:/Users/frank/Desktop/Python/Klampt/Klampt-examples-master/myworld.xml"):
+if not w.readFile(KLAMPT_EXAMPLES+"/myworld.xml"):
     raise RuntimeError("Couldn't read the world file")
 
 shelf = make_shelf(w,*shelf_dims)
