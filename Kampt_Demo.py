@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Apr  2 11:44:48 2021
-
-@author: frank
-"""
 
 from klampt import WorldModel,Geometry3D
 from klampt import vis
