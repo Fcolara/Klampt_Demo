@@ -4,7 +4,7 @@ from klampt import vis
 from klampt.math import vectorops,so3,se3
 from klampt.model.create import primitives
 
-#you will need to change this to the absolute or relative path to Klampt-examples
+#you will need to change this to the absolute or relative path to Klampt_Demo
 KLAMPT_EXAMPLES = ''
 shelf_dims = (0.4,0.4,0.3)
 shelf_offset_x=0.8
