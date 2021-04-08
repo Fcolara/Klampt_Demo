@@ -5,7 +5,7 @@ from klampt.math import vectorops,so3,se3
 from klampt.model.create import primitives
 
 #you will need to change this to the absolute or relative path to Klampt_Demo
-KLAMPT_EXAMPLES = ''
+KLAMPT_Demo = ''
 shelf_dims = (0.4,0.4,0.3)
 shelf_offset_x=0.8
 shelf_offset_y = 0.1
@@ -20,17 +20,13 @@ def make_shelf(world,width,depth,height,wall_thickness=0.005):
     back = Geometry3D()
     bottom = Geometry3D()
     top = Geometry3D()
-    #method 1
-    left.loadFile(KLAMPT_EXAMPLES+"/data/objects/cube.off")
+    left.loadFile(KLAMPT_Demo+"/data/objects/cube.off")
     left.transform([wall_thickness,0,0,0,depth,0,0,0,height],[-width*0.5,-depth*0.5,0])
-    right.loadFile(KLAMPT_EXAMPLES+"/data/objects/cube.off")
+    right.loadFile(KLAMPT_Demo+"/data/objects/cube.off")
     right.transform([wall_thickness,0,0,0,depth,0,0,0,height],[width*0.5,-depth*0.5,0])
-    #method 2
     back.loadFile(KLAMPT_EXAMPLES+"/data/objects/cube.off")
     back.scale(width,wall_thickness,height)
     back.translate([-width*0.5,depth*0.5,0])
-    #equivalent to back.transform([width,0,0,0,wall_thickness,0,0,0,height],[-width*0.5,depth*0.5,0])
-    #method 3
     bottom = primitives.box(width,depth,wall_thickness,center=[0,0,0])
     top = primitives.box(width,depth,wall_thickness,center=[0,0,height-wall_thickness*0.5])
     shelfgeom = Geometry3D()
@@ -44,14 +40,14 @@ def make_shelf(world,width,depth,height,wall_thickness=0.005):
     return shelf
 
 w = WorldModel()
-if not w.readFile(KLAMPT_EXAMPLES+"/myworld.xml"):
+if not w.readFile("myworld.xml"):
     raise RuntimeError("Couldn't read the world file")
 
 shelf = make_shelf(w,*shelf_dims)
 shelf.geometry().translate((shelf_offset_x,shelf_offset_y,shelf_height))
 
 obj = w.makeRigidObject("point_cloud_object") #Making Box
-obj.geometry().loadFile(KLAMPT_EXAMPLES+"/data/objects/apc/genuine_joe_stir_sticks.pcd")
+obj.geometry().loadFile(KLAMPT_Demo+"/data/objects/apc/genuine_joe_stir_sticks.pcd")
 #set up a "reasonable" inertial parameter estimate for a 200g object
 m = obj.getMass()
 m.estimate(obj.geometry(),0.200)
